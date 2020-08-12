@@ -76,8 +76,21 @@ document.querySelector ('.btn-hold').addEventListener ('click', function () {
     document.querySelector ('#score-' + activePlayer).textContent =
       scores[activePlayer];
 
+    //setting to winning score(player can change it even mid game)
+    var input = document.querySelector ('.final-score').value;
+    var winningScore;
+    //Undefined, 0, null or "" are coerced to false
+    //anything else is coerced to true
+    if (input) {
+      winningScore = input;
+    } else {
+      winningScore = 100;
+    }
+
+    console.log (input);
+
     //Check if player has won the game
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winningScore) {
       document.querySelector ('#name-' + activePlayer).textContent = 'winner';
       document.querySelector ('.dice').style.display = 'none';
       document
